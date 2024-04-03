@@ -121,3 +121,30 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configure AWS S3
+
+import os
+import boto3
+from storages.backends.s3boto3 import S3Boto3Storage
+
+# Set AWS S3 bucket name
+AWS_STORAGE_BUCKET_NAME = 'myawsbucketjidemethinks'
+
+# Set AWS S3 custom domain, if needed
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+# Set AWS S3 region
+AWS_S3_REGION_NAME = 'eu-west-3'
+
+# Set AWS S3 access key and secret key (optional if using IAM roles or environment variables)
+AWS_ACCESS_KEY_ID = 'AKIAU6GDVGE2PXRSOLTK'
+AWS_SECRET_ACCESS_KEY = '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'
+
+# Use AWS S3 for static files
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+
+# Use AWS S3 for media files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'

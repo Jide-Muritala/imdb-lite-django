@@ -5,12 +5,14 @@
     <title>Image List</title>
 </head>
 <body>
-    <h1>Methinks AI Image handler challenge</h1>
-    <h2>List of images</h2>
+    <h1>Jide's Movie Reviews</h1>
+    <h2>List of Movies</h2>
     <ul>
         {% for image in images %}
-        <li><a href="{% url 'image_detail' image.id %}">{{ image.name }}</a></li>
+        <li>Movie no {{ image.id }}: {{ image.name }} - <a href="{% url 'image_detail' image.id %}">view movie details</a></li>
         {% endfor %}
     </ul>
+    <!-- Button to navigate to the upload image page -->
+    <a href="{% url 'upload_image' %}"><button>Upload new movie poster</button></a>
 </body>
 </html>

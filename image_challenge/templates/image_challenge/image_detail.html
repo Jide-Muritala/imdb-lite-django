@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Image Detail</title>
+    <title>Movie Details</title>
 </head>
 <body>
-    <h1>Image Detail</h1>
+    <h1>Movie Details</h1>
+    <p>Movie name: {{ image.name }}</p>
     <img src="{{ image.image.url }}" alt="{{ image.name }}">
-    <h2>Comments</h2>
+
+    <h2>Reviews</h2>
     <ul>
         {% for comment in image.comments.all %}
-        <li>{{ comment.text }}</li>
+        <li>{{ comment.text }}
+          <form method="post" action="{% url 'delete_comment' image.id comment.id %}">
+            {% csrf_token %}
+            <button type="submit">Delete Review</button>
+        </li>
         {% endfor %}
     </ul>
     <form action="{% url 'add_comment' image.id %}" method="post">
         {% csrf_token %}
-        <input type="text" name="text" placeholder="Add a comment...">
+        <input type="text" name="text" placeholder="Add a review...">
         <button type="submit">Submit</button>
     </form>
+    <!-- Button to delete the image -->
+    <form method="post" action="{% url 'delete_image' image.id %}">
+      {% csrf_token %}
+      <button type="submit">Delete Movie</button>
+    </form>
+    <a href="{% url 'image_list' %}"><button>Back to Movies list</button></a>
 </body>
 </html>
