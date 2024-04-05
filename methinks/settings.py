@@ -141,6 +141,15 @@ import os
 import boto3
 from storages.backends.s3boto3 import S3Boto3Storage
 
+# Define custom storage classes for static and media files
+class StaticStorage(S3Boto3Storage):
+    location = 'static'
+    default_acl = 'public-read'
+
+class MediaStorage(S3Boto3Storage):
+    location = 'media'
+    default_acl = 'public-read'
+
 # Set AWS S3 bucket name
 AWS_STORAGE_BUCKET_NAME = 'myawsbucketjidemethinks'
 
@@ -161,8 +170,6 @@ STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 # Use AWS S3 for media files
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-
-
 
 # Django settings to serve static files from the React build directory
 STATICFILES_DIRS = [
