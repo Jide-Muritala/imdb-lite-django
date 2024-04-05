@@ -9,5 +9,8 @@
   },
   "scripts": {
     "build": "react-scripts build"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
