@@ -135,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -176,7 +176,7 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 # Django settings to serve static files from the React build directory
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build', 'static')
+    os.path.join(BASE_DIR, 'frontend', 'build', 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
