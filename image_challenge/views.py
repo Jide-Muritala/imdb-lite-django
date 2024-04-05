@@ -55,11 +55,11 @@ def upload_image(request):
         form = ImageUploadForm()
     return render(request, 'image_challenge/upload_image.html', {'form': form})
 
-def delete_image(request, image_id):
+""" def delete_image(request, image_id):
     if request.method == 'POST':
         image = get_object_or_404(Image, pk=image_id)
         image.delete()
-    return redirect('image_list')
+    return redirect('image_list') """
 
 def add_comment(request, image_id):
     """
