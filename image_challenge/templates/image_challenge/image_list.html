@@ -3,16 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Image List</title>
+    <style>
+      body {
+          display: flex;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+      }
+      .container ul {
+          padding: 0;
+          list-style: none;
+      }
+      .container ul li a {
+          text-decoration: none;
+      }
+      .button-container {
+          margin-top: 20px;
+          text-align: center;
+      }
+      .button-container button {
+          margin: 0 10px;
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      .button-container button:hover {
+          background-color: #0056b3;
+      }
+    </style>
 </head>
 <body>
-    <h1>Jide's Movie Reviews</h1>
-    <h2>List of Movies</h2>
+  <div class="container">
+    <h1>IMDB lite</h1>
     <ul>
         {% for image in images %}
-        <li>Movie no {{ image.id }}: {{ image.name }} - <a href="{% url 'image_detail' image.id %}">view movie details</a></li>
+        <li>ID {{ image.id }}: {{ image.name }} - <a href="{% url 'image_detail' image.id %}">view movie details</a></li>
         {% endfor %}
     </ul>
     <!-- Button to navigate to the upload image page -->
-    <a href="{% url 'upload_image' %}"><button>Upload new movie poster</button></a>
+    <div class="button-container">
+        <a href="{% url 'upload_image' %}"><button>Upload new poster</button></a>
+    </div>
+  </div>
 </body>
 </html>

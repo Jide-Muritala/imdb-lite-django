@@ -3,32 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Details</title>
+    <style>
+      body {
+          display: flex;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+      }
+      .container ul {
+          padding: 0;
+          list-style: none;
+      }
+      .container ul li a {
+          text-decoration: none;
+      }
+      .button-container {
+          margin-top: 20px;
+          text-align: center;
+      }
+      .button-container button {
+          margin: 0 10px;
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      .button-container button:hover {
+          background-color: #0056b3;
+      }
+      img {
+          height: 65vh;
+          width: auto;
+          display: block;
+          margin: 0 auto;
+      }
+    </style>
 </head>
 <body>
-    <h1>Movie Details</h1>
-    <p>Movie name: {{ image.name }}</p>
-    <img src="{{ image.image.url }}" alt="{{ image.name }}">
+    <div class="container">
+      <h1>Movie Details</h1>
+      <h2>{{ image.name }}</h2>
+      <img src="{{ image.image.url }}" alt="{{ image.name }}">
 
-    <h2>Reviews</h2>
-    <ul>
-        {% for comment in image.comments.all %}
-        <li>{{ comment.text }}
-          <form method="post" action="{% url 'delete_comment' image.id comment.id %}">
-            {% csrf_token %}
-            <button type="submit">Delete Review</button>
-        </li>
-        {% endfor %}
-    </ul>
-    <form action="{% url 'add_comment' image.id %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="text" placeholder="Add a review...">
-        <button type="submit">Submit</button>
-    </form>
-    <!-- Button to delete the image -->
-    <form method="post" action="{% url 'delete_image' image.id %}">
-      {% csrf_token %}
-      <button type="submit">Delete Movie</button>
-    </form>
-    <a href="{% url 'image_list' %}"><button>Back to Movies list</button></a>
+      <h3>Reviews</h3>
+      <ul>
+          {% for comment in image.comments.all %}
+          <li>
+            {{ comment.text }}
+          </li>
+          {% endfor %}
+      </ul>
+      <form action="{% url 'add_comment' image.id %}" method="post">
+          {% csrf_token %}
+          <input type="text" name="text" placeholder="Add a review...">
+          <button type="submit">Submit</button>
+      </form>
+      <div class="button-container">
+        <a href="{% url 'image_list' %}"><button>Back to list</button></a>
+      </div>
+    </div>
 </body>
 </html>

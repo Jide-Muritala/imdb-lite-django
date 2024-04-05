@@ -3,14 +3,23 @@ from .models import Image, Comment
 import boto3
 from django.conf import settings
 from .forms import ImageUploadForm
-from django.http import HttpResponse
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def image_list(request):
     """
-    View function to render a list of all uploaded images.
+    View function to render a list of all uploaded images in HTML or JSON format.
     """
     images = Image.objects.all()
-    return render(request, 'image_challenge/image_list.html', {'images': images})
+
+    # Check the Accept header to determine the response format
+    if request.headers.get('Accept') == 'application/json':
+        # Serialize the queryset into JSON format
+        data = list(images.values())  # Convert queryset to list of dictionaries
+        return JsonResponse(data, safe=False)
+    else:
+        # Return HTML response
+        return render(request, 'image_challenge/image_list.html', {'images': images})
 
 def image_detail(request, image_id):
     """
@@ -19,6 +28,7 @@ def image_detail(request, image_id):
     image = get_object_or_404(Image, pk=image_id)
     return render(request, 'image_challenge/image_detail.html', {'image': image})
 
+@csrf_exempt
 def upload_image(request):
     """
     View function for handling image upload.
