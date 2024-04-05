@@ -180,3 +180,5 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend_build')
