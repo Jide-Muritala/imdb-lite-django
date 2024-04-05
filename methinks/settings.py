@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import boto3
+from storages.backends.s3boto3 import S3Boto3Storage
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +29,7 @@ SECRET_KEY = 'django-insecure-)6wwoq@-s_(1m_&5wkbb_ska46c3c#e$mwibf+pfw&uvp9jqdo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'your-heroku-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -93,6 +97,9 @@ DATABASES = {
     }
 }
 
+# Configure PostgreSQL for use on Heroku
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -136,10 +143,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure AWS S3
-
-import os
-import boto3
-from storages.backends.s3boto3 import S3Boto3Storage
 
 # Define custom storage classes for static and media files
 class StaticStorage(S3Boto3Storage):

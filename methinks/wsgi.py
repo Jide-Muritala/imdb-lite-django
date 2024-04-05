@@ -14,3 +14,6 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'methinks.settings')
 
 application = get_wsgi_application()
+
+# Get the port number dynamically assigned by Heroku
+port = int(os.environ.get('PORT', 8000))

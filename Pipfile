@@ -8,6 +8,9 @@ django = "*"
 boto3 = "*"
 django-storages = "*"
 django-cors-headers = "*"
+pillow = "*"
+dj-database-url = "*"
+gunicorn = "*"
 
 [dev-packages]
 
