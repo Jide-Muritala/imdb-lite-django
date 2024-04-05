@@ -176,7 +176,7 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 # Django settings to serve static files from the React build directory
 STATICFILES_DIRS = [
-    '/root/methinks/frontend/build/static/',
+    os.path.join(BASE_DIR, 'build', 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
