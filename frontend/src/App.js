@@ -9,7 +9,7 @@ import ImageDetail from './components/ImageDetail';
 function App() {
   // State to track the current page
   const [currentPage, setCurrentPage] = useState('imageList');
-  const [imageId, setImageID] = useState(null);
+  const [imageId, setImageId] = useState(null);
 
   // Function to switch to the upload form page
   const goToUploadForm = () => {
@@ -18,7 +18,7 @@ function App() {
 
   // Function to switch to the image detail page
   const goToImageDetail = (id) => {
-    setImageID(id);
+    setImageId(id);
     setCurrentPage('imageDetail');
   };
 
