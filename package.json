@@ -14,7 +14,7 @@
     "eject": "react-scripts eject"
   },
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
   },
   "homepage": "https://methinks-react-c685c191d127.herokuapp.com/"
 }
