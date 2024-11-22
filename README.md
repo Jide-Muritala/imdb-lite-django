@@ -1,1 +1,1 @@
-# methinks-challenge-project
+# IMDB lite with Django

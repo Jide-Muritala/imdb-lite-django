@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)6wwoq@-s_(1m_&5wkbb_ska46c3c#e$mwibf+pfw&uvp9jqdo'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -163,8 +163,8 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_REGION_NAME = 'eu-west-3'
 
 # Set AWS S3 access key and secret key (optional if using IAM roles or environment variables)
-AWS_ACCESS_KEY_ID = 'AKIAU6GDVGE2PXRSOLTK'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
 # Use AWS S3 for static files
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
